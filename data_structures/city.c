@@ -21,3 +21,22 @@ void initializeCity(City* toInit, int id,char* name, float cost)
     //toInit.priority =priority;
     (*toInit).cost =cost;
 }
+
+//para generar soluciones inciales, se pasan 2 nodos/ciudades por un OR, y asi se genera un vector de ciudades cubiertas
+List* sumaNodos(List* nodoA, List* nodoB)
+{
+    List* output=create_list();
+    first(nodoA);
+    first(nodoB);
+    for(int i =0; i<nodoA->count; i++)
+    {
+        int* valA =(int*)(nodoA->current->data);
+        int* valB =(int*)(nodoB->current->data);
+        int* toPush = (int*)calloc(1,sizeof(int));
+        *toPush= (*valA||*valB);
+        push_back(output,toPush);
+        next(nodoA);
+        next(nodoB);
+    }
+    return output;
+}

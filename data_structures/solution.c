@@ -34,3 +34,20 @@ int isSolution(List* coverage)
     }
     return(1);
 }
+
+void listAntenas(List* solCities)
+{
+    printf("Antenas situadas en: ");
+    first(solCities);
+    for (int j = 0; j < solCities->count; j++)
+    {
+        City* awa =(City*)solCities->current->data;
+        printf("%d",awa->id);
+        if (j<(solCities->count)-1)
+        {
+            printf(", ");
+        }
+        next(solCities);
+    }
+    printf("\n");
+}
