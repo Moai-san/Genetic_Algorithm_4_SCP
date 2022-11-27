@@ -1,6 +1,6 @@
 #include "list.h"
 
-//si se cambia cantidad de columnas del dataset/ cantidad de ciudades, debe cambiarse el valor a ese
+//si se cambia cantidad de columnas del dataset/ cantidad de ciudades, debe cambiarse el valor a ese menos 1
 #define MYRAND_MAX 38
 
 typedef struct City

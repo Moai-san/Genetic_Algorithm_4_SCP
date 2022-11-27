@@ -73,17 +73,12 @@ List * create_list() {
     return new;
 }
 
-long listCount(List * list) {
+int size(List * list) {
     assert(list != NULL); // list no puede ser NULL.
    
     if (list->head == NULL) return 0;
    
     return list->count;
-}
-
-int emptyList(List * list) {
-    assert(list != NULL); // list no puede ser NULL.
-    return list->count == 0;
 }
 
 void * first(List * list) {
@@ -256,7 +251,7 @@ void pop_current(List * list) {
 
 }
 
-void removeAllList(List * list) {
+void clear(List * list) {
     assert(list != NULL); // list no puede ser NULL.
 
     while (list->head != NULL) {
