@@ -4,9 +4,9 @@ Algoritmo genetico para resolver set covering [ICI4144]
 # COMPILE INSTRUCTIONS
 En la terminal, con el compilador de c instalado, y ya situados en la carpeta del proyecto ejecutar el sgte comando:
 
-    _gcc a.c_
+    gcc a.c
 
 # RUN INSTRUCTIONS
 Una vez compilado, en la terminal ejecutar el sgte comando:
 
-    _./a.out_
+    ./a.out
