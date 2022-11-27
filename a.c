@@ -1,26 +1,15 @@
 #include <stdio.h>
 #include <stdlib.h>
-#include <dirent.h>
-#include "./lib/lectura_csv.c"
+//#include <dirent.h>
 #include "./data_structures/list.h"
 #include "./data_structures/treemap.h"
-
-//si se cambia cantidad de columnas del dataset/ cantidad de ciudades, debe cambiarse el valor a ese
-#define MYRAND_MAX 38
+#include "./data_structures/city.c"
+#include "./collect_data.c"
 
 int myRand()
 {
     return(rand()%MYRAND_MAX);
 }
-
-typedef struct City
-{
-    int id;
-    char* name;
-    List* neighborhood;
-    int priority;
-    float cost;
-}City;
 
 /* probably no use esto pq lo hice hace rato, y me vienen a la mente mas cosas
 typedef struct Genoma
@@ -73,18 +62,6 @@ List* sumaNodos(List* nodoA, List* nodoB)
     return output;
 }
 
-//prioridad de una ciudad/nodo
-int priority(List* nodoA)
-{
-    int output = 0;
-    for (int i = 0; i < nodoA->count; i++)
-    {
-        int* temp =(int*)(nodoA->current->data);
-        output = output+(*temp);
-    }
-    return output;
-}
-
 //prioridad de una solucion
 float avgPriority()
 {
@@ -92,47 +69,23 @@ float avgPriority()
     return(0);
 }
 
-int main()
-{
-    //testing();
-    for (int i = 0; i < 15; i++)
-    {
-        printf("%d\n",myRand());
-    }
-    return(0);
-}
-
-
 int testing ()
 {
-    List* test1=create_list();
-    List* test2=create_list();
-    for (int i = 0; i < 5; i++)
+    City** myCities = readCities();
+    for (int i = 0; i < MYRAND_MAX; i++)
     {
-        int* value =(int*)calloc(1,sizeof(int));
-        int* value2 =(int*)calloc(1,sizeof(int));
-        *value=0;
-        *value2=1;
-        push_back(test1,value);
-        push_back(test2,value2);
+        printf("%d\n",cityPriority(myCities[i][0].neighborhood));
     }
-    for (int i = 5; i < 10; i++)
-    {
-        int* value =(int*)calloc(1,sizeof(int));
-        int* value2 =(int*)calloc(1,sizeof(int));
-        *value=0;
-        *value2=1;
-        push_back(test1,value2);
-        push_back(test2,value);
-    }
-    List* testSum=sumaNodos(test1,test2);
-    //printf("%ld\n",testSum->count);
-    printf("[");
-    first(testSum);
-    for (int i = 0; i < 10; i++)
-    {
-        printf("%d | ",*((int*)(testSum->current->data)));
-        next(testSum);
-    }
+    
     return(0);   
+}
+
+int main()
+{
+    testing();
+    /*for (int i = 0; i < 15; i++)
+    {
+        printf("%d\n",myRand());
+    }*/
+    return(0);
 }
