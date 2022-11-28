@@ -45,5 +45,7 @@ Solution** gen_initialSolutions(City** myCities)
         banlist[0] =1;banlist[31] =1;
         
     }
+
+    sorteo(output);
     return output;
 }

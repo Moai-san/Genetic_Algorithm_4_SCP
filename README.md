@@ -9,4 +9,5 @@ En la terminal, con el compilador de c instalado, y ya situados en la carpeta de
 # RUN INSTRUCTIONS
 Una vez compilado, en la terminal ejecutar el sgte comando:
 
-    ./a.out
+    Linux: ./a.out
+    Windows: .\"a.exe"
