@@ -116,7 +116,7 @@ int main()
 {
     srand(time(NULL));
     myCities = readCities();
-    solutions =(gen_initialSolutions(myCities));   
+    solutions =(gen_initialSolutions(myCities));
     testing();
     return(0);
 }

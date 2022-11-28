@@ -1,5 +1,6 @@
 #include "./data_structures/solution.h"
 #include "./lib/utils.c"
+
 //tomo ciudades random hasta que generen una solucion factible
 Solution** gen_initialSolutions(City** myCities)
 {
@@ -45,5 +46,7 @@ Solution** gen_initialSolutions(City** myCities)
         banlist[0] =1;banlist[31] =1;
         
     }
+
+    sorteo(output);
     return output;
 }
