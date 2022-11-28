@@ -54,8 +54,9 @@ void listAntenas(List* solCities)
 
 int* genVectorAntenas(List* solCities)
 {
-    int* output =(int*)calloc(RAND_MAX,sizeof(int));
-    City* awa;
+    int* output =(int*)calloc(MYRAND_MAX,sizeof(int));
+    City* awa =(City*)calloc(1,sizeof(City));
+    first(solCities);
     for (int j = 0; j < solCities->count; j++)
     {
         awa =(City*)solCities->current->data;

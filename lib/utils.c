@@ -5,6 +5,19 @@ int myRand()
     return(rand()%(MYRAND_MAX));
 }
 
+int countAntennas(int* antennas)
+{
+    int output =0;
+    for (int i = 0; i < MYRAND_MAX; i++)
+    {
+        if (antennas[i]==1)
+        {
+            output++;
+        }
+    }
+    return output;
+}
+
 void printVec(List* vec)
 {
     printf("[ ");
@@ -62,4 +75,38 @@ void sorteo(Solution** solutions)
     } while (i != 2);
 
     return;
+}
+
+float getCosto(int* conf, City** myCities)
+{
+    float output =0;
+    for (int i = 0; i < MYRAND_MAX; i++)
+    {
+        if (conf[i]==1)
+        {
+            output = output +myCities[i]->cost;
+        }    
+    }
+    return output;
+}
+
+Solution* vec_toSol(int* vector,City** citySet)
+{
+    Solution* output = (Solution*)calloc(1,sizeof(Solution));
+    output->solCities =create_list();
+    output->costo =0;
+    output->prioridad =0;
+    output->coverage =citySet[0]->neighborhood;//vector vacio
+    for (int i = 0; i < MYRAND_MAX; i++)
+    {
+        if (vector[i]==1)
+        {
+            push_back(output->solCities,citySet[i]);
+            output->costo = output->costo+citySet[i]->cost;
+            output->coverage =sumaNodos(output->coverage,citySet[i]->neighborhood);
+            output->prioridad =output->prioridad+citySet[i]->priority;
+        }
+    }
+    output->prioridad =output->prioridad/output->solCities->count;
+    return(output);
 }

@@ -35,7 +35,7 @@ Solution** gen_initialSolutions(City** myCities)
                 break;
             }
         }
-        printVec(solCandidate->coverage);
+        //printVec(solCandidate->coverage);
         solCandidate->prioridad =(solCandidate->prioridad)/solCandidate->solCities->count;
         output[i]=solCandidate;
         for (int i = 0; i < MYRAND_MAX; i++)
