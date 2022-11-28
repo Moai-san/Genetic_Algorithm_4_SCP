@@ -1,16 +1,16 @@
 #include "./data_structures/solution.h"
 #include "./lib/utils.c"
 //tomo ciudades random hasta que generen una solucion factible
-TreeMap* gen_initialSolutions(City** myCities)
+Solution** gen_initialSolutions(City** myCities)
 {
-    TreeMap* output =createTreeMap(lower_than_int);
+    Solution** output =(Solution**)calloc(4,sizeof(Solution*));
     int banlist[38] ={0};
     banlist[0] =1;banlist[31]=1;
     int randNum;
     for (int i = 0; i < 4; i++)
     {
-        List* list_toPush =create_list();
         Solution* solCandidate =(Solution*)calloc(1,sizeof(Solution));
+        solCandidate->solCities =create_list();
         solCandidate->coverage =create_list();
         *(solCandidate->coverage) =*(myCities[0][0].neighborhood); //la ciudad 0 no existe asi que es un vector vacío
         solCandidate->costo =0;
@@ -25,7 +25,7 @@ TreeMap* gen_initialSolutions(City** myCities)
             City* citPush =(City*)calloc(1,sizeof(City));
             *citPush =myCities[randNum][0];
             banlist[randNum] =1;
-            push_back(list_toPush,citPush);
+            push_back(solCandidate->solCities,citPush);
             solCandidate->costo = (solCandidate->costo)+(citPush->cost);
             solCandidate->prioridad = (solCandidate->prioridad)+(citPush->priority);
             
@@ -35,10 +35,10 @@ TreeMap* gen_initialSolutions(City** myCities)
                 break;
             }
         }
-        solCandidate->solCities=list_toPush;
         printVec(solCandidate->coverage);
-        solCandidate->prioridad =(solCandidate->prioridad)/list_toPush->count;
-        insertTreeMap(output,&(solCandidate->costo),solCandidate);
+        solCandidate->prioridad =(solCandidate->prioridad)/solCandidate->solCities->count;
+        output[i]=solCandidate;
+        //insertTreeMap(output,&(solCandidate->costo),solCandidate);
         for (int i = 0; i < MYRAND_MAX; i++)
         {
             banlist[i] =0;

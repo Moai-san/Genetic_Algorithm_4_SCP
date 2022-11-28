@@ -227,7 +227,7 @@ TreeNode * maximum(TreeNode * x)
   }
 }
 
-void * last_tree(TreeMap * tree)
+void * lastTreeMap(TreeMap * tree)
 {
   TreeNode* output =((TreeNode*)calloc(1,sizeof(TreeNode)));
   tree->current =(tree->root);

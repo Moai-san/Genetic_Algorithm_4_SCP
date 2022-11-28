@@ -8,8 +8,8 @@
 #include "./genetico.c"
 #include "./collect_data.c"
 
-static City** myCities;
-static TreeMap* solutions;
+City** myCities;
+Solution** solutions;
 
 //criterio de seleccion será elitista
 //el genetico lo aplicaré en 1 corte y este será 
@@ -17,6 +17,15 @@ static TreeMap* solutions;
 //el costo total
 //criterio elitista basado en costo, en el hipotetico caso de tener dos costos identicos, priorizaré la solucion de mayor promedio de prioridad
 //criterio de salida será que el costo no disminuya al menos un 10%
+
+/*void podar()
+{
+    first(solutions);
+    next(solutions);
+    next(solutions);
+    next(solutions);
+}*/
+
 
 //prioridad de una solucion
 float avgPriority()
@@ -27,16 +36,20 @@ float avgPriority()
 
 int testing ()
 {
-    Solution* mysol =(Solution*)firstTreeMap(solutions);
-    Solution* mysol2 =(Solution*)nextTreeMap(solutions);
-    Solution* mysol3 =(Solution*)nextTreeMap(solutions);
-    Solution* mysol4 =(Solution*)nextTreeMap(solutions);
-    printf("%ld antenas en la solucion\n",mysol->solCities->count);
-    listAntenas(mysol->solCities);
-    printf("$%.1fK USD, costo solucion\n\n",mysol->costo);
+    //Solution* mysol =(Solution*)lastTreeMap(solutions);
+
+    Solution* mysol0 =solutions[0];
+    Solution* mysol1 =solutions[1];
+    Solution* mysol2 =solutions[2];
+    Solution* mysol3 =solutions[3];
+    //printf("hola SEGFAULT\n");
+    printf("%ld antenas en la solucion\n",mysol0->solCities->count);
+    listAntenas(mysol0->solCities);
+    //printf("$%.1fK USD, costo solucion\n\n",mysol->costo);
+    printf("$%.1fK USD, costo solucion\n\n",mysol0->costo);
+    printf("$%.1fK USD, costo solucion\n\n",mysol1->costo);
     printf("$%.1fK USD, costo solucion\n\n",mysol2->costo);
     printf("$%.1fK USD, costo solucion\n\n",mysol3->costo);
-    printf("$%.1fK USD, costo solucion\n\n",mysol4->costo);
     return(0);   
 }
 
@@ -45,10 +58,10 @@ int main()
 {
     srand(time(NULL));
     myCities = readCities();
-    solutions =gen_initialSolutions(myCities);
+    solutions =(gen_initialSolutions(myCities));
     /*for (int i = 0; i < 4; i++)
     {
-        printf("%f",*((float*)solutions->current->key));
+        printf("%.1f\n",solutions[i]->costo);
     }*/
     
     testing();
