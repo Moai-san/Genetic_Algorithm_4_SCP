@@ -38,7 +38,6 @@ Solution** gen_initialSolutions(City** myCities)
         printVec(solCandidate->coverage);
         solCandidate->prioridad =(solCandidate->prioridad)/solCandidate->solCities->count;
         output[i]=solCandidate;
-        //insertTreeMap(output,&(solCandidate->costo),solCandidate);
         for (int i = 0; i < MYRAND_MAX; i++)
         {
             banlist[i] =0;
