@@ -117,12 +117,14 @@ int testing ()
     Solution* mysol1 =solutions[1];
     Solution* mysol2 =solutions[2];
     Solution* mysol3 =solutions[3];
-    printf("%ld antenas en la solucion\n",mysol0->solCities->count);
+    printf("%ld antenas en la solucion optima (solucion mas barata)\n",mysol0->solCities->count);
+    printf("Solucion optima: ");
     listAntenas(mysol0->solCities);
-    printf("$%.1fK USD, costo solucion\n\n",mysol0->costo);
+    printf("$%.1fK USD, costo solucion optima\n\n",mysol0->costo);
     printf("$%.1fK USD, costo solucion\n\n",mysol1->costo);
     printf("$%.1fK USD, costo solucion\n\n",mysol2->costo);
     printf("$%.1fK USD, costo solucion\n\n",mysol3->costo);
+    printf("---------------------------------------------------------------------------------------\n\n");
     return(0);   
 }
 
@@ -136,7 +138,6 @@ int main()
     printf("SOLUCIONES INICIALES\n");
     testing();
     time_t end = time (NULL) + timeLapse;
-    printf("%ld aaaa\n",end);
     while (time(NULL)<end)
     {
         newGeneration(solutions);
